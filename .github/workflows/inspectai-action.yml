@@ -1,0 +1,17 @@
+name: inspectai-action
+on: workflow_dispatch
+
+jobs:
+  inspectai-1-job:
+    name: Run 1st inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 1
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_1.json
+          path: ${{ github.workspace }}/reports
