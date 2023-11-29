@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: ls
-      - run: /usr/bin/exec_analysis 1 ${{ secrets.OPENAI_TOKEN }}
+      - run: /usr/bin/exec_analysis 1 $OPENAI_TOKEN
       - uses: actions/upload-artifact@v3
         with:
           name: inspectai_report_1.json
