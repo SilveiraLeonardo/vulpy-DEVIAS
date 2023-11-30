@@ -16,8 +16,126 @@ jobs:
           name: inspectai_report_1.json
           path: ${{ github.workspace }}/reports
 
-  codefix-1-job:
+  inspectai-2-job:
+    name: Run 2nd inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 2 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_2.json
+          path: ${{ github.workspace }}/reports
+
+  inspectai-3-job:
+    name: Run 3rd inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 3 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_3.json
+          path: ${{ github.workspace }}/reports
+
+  inspectai-4-job:
     needs: inspectai-1-job
+    name: Run 4th inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 4 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_4.json
+          path: ${{ github.workspace }}/reports
+
+  inspectai-5-job:
+    needs: inspectai-1-job
+    name: Run 5th inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 5 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_5.json
+          path: ${{ github.workspace }}/reports
+
+  inspectai-6-job:
+    needs: inspectai-1-job
+    name: Run 6th inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 6 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_6.json
+          path: ${{ github.workspace }}/reports
+
+  inspectai-7-job:
+    needs: inspectai-4-job
+    name: Run 7th inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 7 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_7.json
+          path: ${{ github.workspace }}/reports
+
+  inspectai-8-job:
+    needs: inspectai-4-job
+    name: Run 8th inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 8 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_8.json
+          path: ${{ github.workspace }}/reports
+
+  inspectai-9-job:
+    needs: inspectai-4-job
+    name: Run 9th inspectai runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/inspectai-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls
+      - run: /usr/bin/exec_analysis 9 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: inspectai_report_9.json
+          path: ${{ github.workspace }}/reports
+
+  codefix-1-job:
+    needs: inspectai-7-job
     name: Run 1st codefix runner
     runs-on: ubuntu-latest
     container:
@@ -30,4 +148,39 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: codefix_report_1.json
-          path: ${{ github.workspace }}/reports          
+          path: ${{ github.workspace }}/reports  
+
+  codefix-2-job:
+    needs: inspectai-7-job
+    name: Run 2nd codefix runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/codefix-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v3
+      - run: ls
+      - run: /usr/bin/exec_analysis 2 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: codefix_report_2.json
+          path: ${{ github.workspace }}/reports  
+
+  codefix-3-job:
+    needs: inspectai-7-job
+    name: Run 3rd codefix runner
+    runs-on: ubuntu-latest
+    container:
+      image: secdevias/codefix-gitactions:latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v3
+      - run: ls
+      - run: /usr/bin/exec_analysis 3 ${{ secrets.OPENAI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: codefix_report_3.json
+          path: ${{ github.workspace }}/reports  
+
+
+
