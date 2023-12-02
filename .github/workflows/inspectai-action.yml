@@ -181,9 +181,9 @@ jobs:
         with:
           name: codefix_report_3.json
           path: ${{ github.workspace }}/reports  
-
+          
   reportConstructor-job:
-    needs: codefix-1-job codefix-2-job codefix-3-job
+    needs: [ codefix-1-job, codefix-2-job, codefix-3-job ]
     name: Final Report Constructor
     runs-on: ubuntu-latest
     container:
@@ -196,5 +196,4 @@ jobs:
         with:
           name: final_report.json
           path: ${{ github.workspace }}/reports  
-
 
